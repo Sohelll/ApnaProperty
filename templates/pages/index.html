@@ -9,26 +9,24 @@
         <div class="home-search p-5">
             <div class="overlay p-5">
                 <h1 class="display-4 mb-4">
-                    Property Searching Just Got So Easy
+                    APNA PROPERTY BROKERS
                 </h1>
-                <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores
-                    eveniet vel nostrum magnam
-                    voluptatum tempore! Consectetur, id commodi!</p>
+                <p class="lead">Search for dream house today...</p>
                 <div class="search">
-                    <form action="search.html">
+                    <form action="{% url 'search' %}">
                         <!-- Form Row 1 -->
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
                                 <label class="sr-only">Keywords</label>
-                                <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
+                                <input type="text" name="keywords" class="form-control" placeholder="Keyword (new, big, strong, modern)">
                             </div>
 
                             <div class="col-md-4 mb-3">
                                 <label class="sr-only">City</label>
-                                <input type="text" name="city" class="form-control" placeholder="City">
+                                <input type="text" name="city" class="form-control" placeholder="City" value="Dewas">
                             </div>
 
-                            <div class="col-md-4 mb-3">
+                            <!-- <div class="col-md-4 mb-3">
                                 <label class="sr-only">State</label>
                                 <select name="state" class="form-control">
                                     <option selected="true" disabled="disabled">State (All)</option>
@@ -85,38 +83,24 @@
                                     <option value="WY">Wyoming</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Form Row 2 -->
                         <div class="form-row">
                             <div class="col-md-6 mb-3">
                                 <label class="sr-only">Bedrooms</label>
                                 <select name="bedrooms" class="form-control">
                                     <option selected="true" disabled="disabled">Bedrooms (All)</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                    {% for k,v in bedroom_choices.items %}
+                                        <option value="{{k}}">{{ v }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <select name="price" class="form-control" id="type">
                                     <option selected="true" disabled="disabled">Max Price (Any)</option>
-                                    <option value="100000">$100,000</option>
-                                    <option value="200000">$200,000</option>
-                                    <option value="300000">$300,000</option>
-                                    <option value="400000">$400,000</option>
-                                    <option value="500000">$500,000</option>
-                                    <option value="600000">$600,000</option>
-                                    <option value="700000">$700,000</option>
-                                    <option value="800000">$800,000</option>
-                                    <option value="900000">$900,000</option>
-                                    <option value="1000000">$1M+</option>
+                                    {% for k,v in price_choices.items %}
+                                    <option value="{{k}}"><span>&#8377;</span>{{ v }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -131,7 +115,7 @@
 <!-- Listings -->
 <section id="listings" class="py-5">
     <div class="container">
-        <h3 class="text-center mb-3">Latest Listings</h3>
+        <h3 class="text-center mb-3">Latest Properties</h3>
         <div class="row">
             {% if listings %}
                 {% for listing in listings %}
@@ -162,6 +146,12 @@
                                         <i class="fas fa-bed"></i> Bedrooms: {{ listing.bedrooms }}</div>
                                     <div class="col-6">
                                         <i class="fas fa-bath"></i> Bathrooms: {{ listing.bathrooms }}</div>
+                                </div>
+                                <div class="row py-2 text-secondary">
+                                    <div class="col-6">
+                                        <i class="fas fa-arrows-alt-h"></i> Width: {{ listing.width }}</div>
+                                    <div class="col-6">
+                                        <i class="fas fa-arrows-alt-v"></i> Length: {{ listing.length }}</div>
                                 </div>
                                 <hr>
                                 <!-- <div class="row py-2 text-secondary">
@@ -199,25 +189,23 @@
                 <i class="fas fa-comment fa-4x mr-4"></i>
                 <hr>
                 <h3>Consulting Services</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae,
-                    provident iste consequatur
-                    hic dignissimos ratione ea quae.</p>
+                <p>We also provide the consulting services. We can get property as per your requirement as soon 
+                    as we can.
+                </p>
             </div>
             <div class="col-md-4">
                 <i class="fas fa-home fa-4x mr-4"></i>
                 <hr>
                 <h3>Propery Management</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae,
-                    provident iste consequatur
-                    hic dignissimos ratione ea quae.</p>
+                <p>This is our future plan to manage the property which are owned by busy owner. We are currently planning on this 
+                    part of the job.
+                </p>
             </div>
             <div class="col-md-4">
                 <i class="fas fa-suitcase fa-4x mr-4"></i>
                 <hr>
                 <h3>Renting & Selling</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae,
-                    provident iste consequatur
-                    hic dignissimos ratione ea quae.</p>
+                <p>Coming Soon, property for renting will soon be listed of the site, stay tuned for that.</p>
             </div>
         </div>
     </div>

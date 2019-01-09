@@ -36,6 +36,8 @@
 <section id="listing" class="py-4">
     <div class="container">
         <a href="{% url 'listings' %}" class="btn btn-light mb-4">Back To Listings</a>
+        <!-- #Alerts -->
+        {% include 'partials/_alerts.html' %}
         <div class="row">
             <div class="col-md-9">
                 <!-- Home Main Image -->
@@ -149,17 +151,17 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-3">
-                <div class="card mb-3">
+            <div class="col-md-3">
+                <!-- <div class="card mb-3">
                     <img class="card-img-top" src="assets/img/realtors/kyle.jpg" alt="Seller of the month">
                     <div class="card-body">
                         <h5 class="card-title">Property Realtor</h5>
                         <h6 class="text-secondary">Kyle Brown</h6>
                     </div>
-                </div>
+                </div> -->
                 <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An
                     Inquiry</button>
-            </div> -->
+            </div>
         </div>
     </div>
 </section>
@@ -175,10 +177,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{% url 'contact' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="listing_id", value="{{ listing.id }}">
                     <div class="form-group">
                         <label for="property_name" class="col-form-label">Property:</label>
-                        <input type="text" name="listing" class="form-control" value="45 Drivewood Cirlce" disabled>
+                        <input type="text" name="listin" class="form-control" value="{{ listing.title }}">
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-form-label">Name:</label>
