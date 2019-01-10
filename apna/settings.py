@@ -79,11 +79,13 @@ WSGI_APPLICATION = 'apna.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'apnadb',
-        'USER': 'postgres',
-        'PASSWORD': '2025',
-        'HOST': 'localhost'
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'apnadb',
+        # 'USER': 'postgres',
+        # 'PASSWORD': '2025',
+        # 'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3', #postgres hosting not available for free, sorry :(
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
