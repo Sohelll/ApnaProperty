@@ -35,7 +35,7 @@ def search(request):
             queryset_list = queryset_list.filter(description__icontains=keywords)
 
     #city
-    if 'keywords' in request.GET:
+    if 'city' in request.GET:
         city = request.GET['city']
         if city:
             queryset_list = queryset_list.filter(
