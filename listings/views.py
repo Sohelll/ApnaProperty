@@ -6,7 +6,7 @@ from listings.choices import price_choices, bedroom_choices, state_choices
 def index(request):
     listings = Listings.objects.order_by('-list_date').filter(is_published=True)
 
-    paginator = Paginator(listings, 6)
+    paginator = Paginator(listings, 2)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
 
@@ -53,7 +53,7 @@ def search(request):
         price = request.GET['price']
         if price:
             queryset_list = queryset_list.filter(
-                bedrooms__lte=price)
+                price__lte=price)
 
 
     context = {
